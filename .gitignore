@@ -1,0 +1,25 @@
+# Created by .ignore support plugin (hsz.mobi)
+### default template
+# IntelliJ project files
+.idea
+out
+gen
+
+# Vagrant
+.vagrant/
+.box
+
+# Frontend
+node_modules/
+static/
+
+# venv
+venv/
+docs/*svg
+docs/.md
+docs/_build/
+
+# test
+.coverage
+htmlcov/
+.pytest_cache
