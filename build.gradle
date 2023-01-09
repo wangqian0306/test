@@ -1,8 +1,9 @@
 plugins {
+    id 'java'
     id 'org.springframework.boot' version '3.0.1'
     id 'io.spring.dependency-management' version '1.1.0'
+    id 'org.hibernate.orm' version '6.1.6.Final'
     id 'org.graalvm.buildtools.native' version '0.9.18'
-    id 'java'
 }
 
 configurations {
@@ -15,8 +16,14 @@ group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
+}
+
 repositories {
-    mavenCentral()
+  mavenCentral()
 }
 
 dependencies {
@@ -27,9 +34,17 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    runtimeOnly 'com.mysql:mysql-connector-j'
+    implementation 'com.mysql:mysql-connector-j'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+hibernate {
+  enhancement {
+    lazyInitialization false
+    dirtyTracking true
+    associationManagement true
+  }
 }
